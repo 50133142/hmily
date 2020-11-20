@@ -9,9 +9,9 @@ spring:
         allow-bean-definition-overriding: true
     datasource:
         driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://127.0.0.1:3306/hmily_stock?useUnicode=true&characterEncoding=utf8
-        username: root
-        password:
+        url: jdbc:mysql://1114.67.171.251:3306/hmily_stock?useUnicode=true&characterEncoding=utf8
+        username: yanbing
+        password: yanbing
     application:
       name: inventory-service
 

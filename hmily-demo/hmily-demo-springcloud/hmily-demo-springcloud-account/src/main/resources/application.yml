@@ -7,9 +7,9 @@ server:
 spring:
     datasource:
         driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://127.0.0.1:3306/hmily_account?useUnicode=true&characterEncoding=utf8
-        username: root
-        password:
+        url: jdbc:mysql://114.67.171.251:3306/hmily_account?useUnicode=true&characterEncoding=utf8
+        username: yanbing
+        password: yanbing
     application:
       name: account-service
     main:
