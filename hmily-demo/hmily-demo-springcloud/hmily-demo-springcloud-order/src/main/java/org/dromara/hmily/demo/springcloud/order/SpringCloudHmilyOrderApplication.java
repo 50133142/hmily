@@ -34,7 +34,7 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 @EnableEurekaClient
 @EnableFeignClients
-@ImportResource({"classpath:applicationContext.xml"})
+//@ImportResource({"classpath:applicationContext.xml"})
 @MapperScan("org.dromara.hmily.demo.common.order.mapper")
 public class SpringCloudHmilyOrderApplication {
 

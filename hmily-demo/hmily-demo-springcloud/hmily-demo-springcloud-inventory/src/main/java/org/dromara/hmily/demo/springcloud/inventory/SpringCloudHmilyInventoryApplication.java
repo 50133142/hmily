@@ -35,7 +35,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 @EnableEurekaClient
 @EnableFeignClients
-@ImportResource({"classpath:applicationContext.xml"})
+//@ImportResource({"classpath:applicationContext.xml"})
 @MapperScan("org.dromara.hmily.demo.common.inventory.mapper")
 @EnableTransactionManagement
 public class SpringCloudHmilyInventoryApplication {

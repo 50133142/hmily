@@ -156,6 +156,7 @@ public class PaymentServiceImpl implements PaymentService {
     public void cancelOrderStatus(Order order) {
         updateOrderStatus(order, OrderStatusEnum.PAY_FAIL);
         LOGGER.info("=========进行订单cancel操作完成================");
+        throw new HmilyRuntimeException("进行订单cancel操作完成  error");
     }
     
     private void updateOrderStatus(Order order, OrderStatusEnum orderStatus) {

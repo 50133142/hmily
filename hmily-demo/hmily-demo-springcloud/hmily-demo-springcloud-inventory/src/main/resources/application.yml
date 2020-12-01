@@ -9,7 +9,7 @@ spring:
         allow-bean-definition-overriding: true
     datasource:
         driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://1114.67.171.251:3306/hmily_stock?useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://114.67.171.251:3306/hmily_stock?useUnicode=true&characterEncoding=utf8
         username: yanbing
         password: yanbing
     application:
