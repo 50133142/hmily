@@ -20,10 +20,13 @@ package org.dromara.hmily.demo.springcloud.inventory.controller;
 import org.dromara.hmily.demo.common.inventory.dto.InventoryDTO;
 import org.dromara.hmily.demo.springcloud.inventory.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.InputStream;
 
 /**
  * @author xiaoyu
@@ -61,6 +64,8 @@ public class InventoryController {
 
     @RequestMapping("/mockWithTryTimeout")
     public Boolean mockWithTryTimeout(@RequestBody InventoryDTO inventoryDTO) {
+
+
         return inventoryService.mockWithTryTimeout(inventoryDTO);
     }
 }
