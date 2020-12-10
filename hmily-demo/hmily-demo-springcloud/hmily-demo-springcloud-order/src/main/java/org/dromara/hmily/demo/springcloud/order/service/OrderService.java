@@ -107,4 +107,8 @@ public interface OrderService {
      * @param order 订单实体类
      */
     void updateOrderStatus(Order order);
+
+    String writeOrderPay(Integer count,BigDecimal amount);
+
+    Order queryOrderPay(Integer id);
 }

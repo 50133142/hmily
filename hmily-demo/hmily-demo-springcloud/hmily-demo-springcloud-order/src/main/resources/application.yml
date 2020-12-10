@@ -8,11 +8,11 @@ server:
 spring:
     main:
         allow-bean-definition-overriding: true
-    datasource:
-        driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://114.67.171.251:3306/hmily_order?useUnicode=true&characterEncoding=utf8
-        username: yanbing
-        password: yanbing
+#    datasource:
+#        driver-class-name:  com.mysql.jdbc.Driver
+#        url: jdbc:mysql://114.67.171.251:3306/hmily_order?useUnicode=true&characterEncoding=utf8
+#        username: yanbing
+#        password: yanbing
     application:
       name: order-service
 
@@ -48,5 +48,6 @@ logging:
         org.dromara.hmily.demo: debug
         io.netty: info
     path: "./logs"
+
 
 

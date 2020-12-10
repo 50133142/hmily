@@ -1,4 +1,4 @@
-/*
+package org.dromara.hmily.demo.common.order.mapper;/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.dromara.hmily.demo.common.order.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.dromara.hmily.demo.common.order.entity.Order;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -29,12 +29,13 @@ import java.util.List;
  *
  * @author xiaoyu
  */
+@Repository
 public interface OrderMapper {
 
     /**
      * 保存订单.
      *
-     * @param order 订单对象
+     * @param `order`  订单对象
      * @return rows int
      */
     @Insert(" insert into `order` (create_time,number,status,product_id,total_amount,count,user_id) " +
@@ -44,7 +45,7 @@ public interface OrderMapper {
     /**
      * 更新订单.
      *
-     * @param order 订单对象
+     * @param `order`  订单对象
      * @return rows int
      */
     @Update("update `order` set status = #{status}  where number = #{number}")
@@ -55,6 +56,14 @@ public interface OrderMapper {
      *
      * @return List<Order> list
      */
-    @Select("select * from  order")
+    @Select("select * from  `order` ")
     List<Order> listAll();
+
+    /**
+     * 由id获取订单
+     *
+     * @return List<Order> list
+     */
+//    @Select("select * from  `order`  where id = #{id}")
+    List<Order> listById(Order order);
 }

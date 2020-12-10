@@ -17,6 +17,7 @@
 
 package org.dromara.hmily.demo.springcloud.order;
 
+import org.apache.commons.io.IOUtils;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,6 +26,10 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * SpringCloudHmilyOrderApplication.
@@ -43,7 +48,12 @@ public class SpringCloudHmilyOrderApplication {
      *
      * @param args args
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws IOException{
         SpringApplication.run(SpringCloudHmilyOrderApplication.class, args);
+
+
+        ClassPathResource resource = new ClassPathResource("hmily.yml");
+        InputStream inputStream = resource.getInputStream();
+        IOUtils.readLines(inputStream).forEach(System.out::println);
     }
 }

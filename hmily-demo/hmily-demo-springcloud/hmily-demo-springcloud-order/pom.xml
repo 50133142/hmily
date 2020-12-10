@@ -27,7 +27,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>hmily-demo-springcloud-order</artifactId>
-
+    <properties>
+       <shardingsphere.version>5.0.0-RC1-SNAPSHOT</shardingsphere.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.dromara</groupId>
@@ -102,21 +104,21 @@
             <artifactId>spring-context</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-jdbc</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.46</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <version>5.1.46</version>-->
+<!--        </dependency>-->
 
         <!-- if you want to use oracle,please import and open this-->
         <!-- <dependency>
@@ -161,6 +163,51 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-bean-validators</artifactId>
         </dependency>
+
+<!--        &lt;!&ndash; for spring boot &ndash;&gt;
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+            <version>4.0.0-RC3</version>
+        </dependency>
+
+        &lt;!&ndash; for spring namespace &ndash;&gt;
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-namespace</artifactId>
+            <version>4.0.0-RC3</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+            <version>${shardingsphere.version}</version>
+            <exclusions>
+              <exclusion>
+                  <groupId>com.google.guava</groupId>
+                  <artifactId>guava</artifactId>
+              </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-jdbc-core-spring-namespace</artifactId>
+            <version>${shardingsphere.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.1-jre</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

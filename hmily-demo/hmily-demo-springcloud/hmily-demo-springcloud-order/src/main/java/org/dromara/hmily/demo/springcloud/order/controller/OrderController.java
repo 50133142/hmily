@@ -19,6 +19,8 @@ package org.dromara.hmily.demo.springcloud.order.controller;
 
 import io.swagger.annotations.ApiOperation;
 import java.math.BigDecimal;
+
+import org.dromara.hmily.demo.common.order.entity.Order;
 import org.dromara.hmily.demo.springcloud.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +40,22 @@ public class OrderController {
     @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
+    }
+
+
+    @PostMapping(value = "/writeOrderPay")
+    @ApiOperation(value = "写操作")
+    public String writeOrderPay(@RequestParam(value = "count") Integer count,
+                           @RequestParam(value = "amount") BigDecimal amount) {
+        return orderService.writeOrderPay(count, amount);
+    }
+
+
+
+    @PostMapping(value = "/queryOrderPay")
+    @ApiOperation(value = "写操作")
+    public Order orderPay(@RequestParam(value = "id") Integer id) {
+        return orderService.queryOrderPay(id);
     }
 
     @PostMapping(value = "/orderPay")
