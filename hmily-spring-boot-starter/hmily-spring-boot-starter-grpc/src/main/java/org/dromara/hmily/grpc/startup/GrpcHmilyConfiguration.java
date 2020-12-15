@@ -15,24 +15,27 @@
  * limitations under the License.
  */
 
-package org.dromara.hmily.brpc.field;
+package org.dromara.hmily.grpc.startup;
 
-import com.baidu.brpc.spring.annotation.RpcProxy;
-import org.dromara.hmily.core.field.AnnotationField;
-import org.dromara.hmily.spi.HmilySPI;
-
-import java.lang.reflect.Field;
+import org.dromara.hmily.grpc.client.GrpcHmilyClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
- * The type brpc referer annotation field.
+ * add GrpcHmilyClient.
  *
- * @author liu·yu
+ * @author tydhot
  */
-@HmilySPI(value = "brpc")
-public class BrpcRefererAnnotationField implements AnnotationField {
-    @Override
-    public boolean check(final Field field) {
-        RpcProxy rpcProxy = field.getAnnotation(RpcProxy.class);
-        return rpcProxy != null;
+@Configuration
+public class GrpcHmilyConfiguration {
+
+    /**
+     * add grpcHmilyClient.
+     *
+     * @return grpcHmilyClient
+     */
+    @Bean
+    public GrpcHmilyClient grpcHmilyClient() {
+        return new GrpcHmilyClient();
     }
 }
