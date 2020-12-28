@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.dromara.hmily.demo.springcloud.order.client;
+package org.dromara.hmily.demo.springcloud.gateway.client;
 
 import org.dromara.hmily.annotation.Hmily;
 import org.dromara.hmily.demo.common.inventory.dto.InventoryDTO;

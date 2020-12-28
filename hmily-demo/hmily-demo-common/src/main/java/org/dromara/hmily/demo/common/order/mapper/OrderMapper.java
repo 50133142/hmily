@@ -38,7 +38,7 @@ public interface OrderMapper {
      * @param `order`  订单对象
      * @return rows int
      */
-    @Insert(" insert into `order` (create_time,number,status,product_id,total_amount,count,user_id) " +
+    @Insert(" insert into `t_order` (create_time,number,status,product_id,total_amount,count,user_id) " +
             " values ( #{createTime},#{number},#{status},#{productId},#{totalAmount},#{count},#{userId})")
     int save(Order order);
 
@@ -48,7 +48,7 @@ public interface OrderMapper {
      * @param `order`  订单对象
      * @return rows int
      */
-    @Update("update `order` set status = #{status}  where number = #{number}")
+    @Update("update `t_order` set status = #{status}  where number = #{number}")
     int update(Order order);
 
     /**
@@ -56,7 +56,7 @@ public interface OrderMapper {
      *
      * @return List<Order> list
      */
-    @Select("select * from  `order` ")
+    @Select("select * from  `t_order` ")
     List<Order> listAll();
 
     /**
@@ -64,6 +64,6 @@ public interface OrderMapper {
      *
      * @return List<Order> list
      */
-//    @Select("select * from  `order`  where id = #{id}")
+//    @Select("select * from  `t_order`  where id = #{id}")
     List<Order> listById(Order order);
 }

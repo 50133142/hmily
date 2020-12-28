@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.dromara.hmily.demo.springcloud.order.configuration;
+package org.dromara.hmily.demo.springcloud.gateway.configuration;
 
 import org.springframework.context.annotation.Configuration;
 

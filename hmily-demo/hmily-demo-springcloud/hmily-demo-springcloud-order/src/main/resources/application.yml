@@ -8,11 +8,11 @@ server:
 spring:
     main:
         allow-bean-definition-overriding: true
-#    datasource:
-#        driver-class-name:  com.mysql.jdbc.Driver
-#        url: jdbc:mysql://114.67.171.251:3306/hmily_order?useUnicode=true&characterEncoding=utf8
-#        username: yanbing
-#        password: yanbing
+    datasource:
+        driver-class-name:  com.mysql.jdbc.Driver
+        url: jdbc:mysql://114.67.171.251:3341/hmily_order?useUnicode=true&characterEncoding=utf8
+        username: root
+        password: 123456
     application:
       name: order-service
 

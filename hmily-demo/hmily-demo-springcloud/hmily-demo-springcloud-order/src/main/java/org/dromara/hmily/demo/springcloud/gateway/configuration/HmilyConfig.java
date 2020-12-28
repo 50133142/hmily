@@ -1,4 +1,4 @@
-package org.dromara.hmily.demo.springcloud.order.configuration;
+package org.dromara.hmily.demo.springcloud.gateway.configuration;
 
 import org.dromara.hmily.spring.HmilyApplicationContextAware;
 import org.dromara.hmily.spring.aop.SpringHmilyTransactionAspect;

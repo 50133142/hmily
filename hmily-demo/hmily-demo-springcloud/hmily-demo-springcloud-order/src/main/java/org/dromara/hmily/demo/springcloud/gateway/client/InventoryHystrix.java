@@ -15,57 +15,42 @@
  * limitations under the License.
  */
 
-package org.dromara.hmily.demo.springcloud.order.client;
+package org.dromara.hmily.demo.springcloud.gateway.client;
 
-import org.dromara.hmily.demo.common.account.dto.AccountDTO;
-import org.dromara.hmily.demo.common.account.dto.AccountNestedDTO;
+import org.dromara.hmily.demo.common.inventory.dto.InventoryDTO;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-
 /**
- * The type Account hystrix.
- *
  * @author xiaoyu(Myth)
  */
 @Component
-public class AccountHystrix implements AccountClient {
+public class InventoryHystrix implements InventoryClient {
+
 
     @Override
-    public Boolean payment(AccountDTO accountDO) {
-        System.out.println("执行断路器。。" + accountDO.toString());
+    public Boolean decrease(InventoryDTO inventoryDTO) {
+        System.out.println("inventory hystrix.......");
         return false;
     }
     
     @Override
-    public Boolean testPayment(AccountDTO accountDO) {
-        System.out.println("执行断路器。。" + accountDO.toString());
+    public Boolean testDecrease(InventoryDTO inventoryDTO) {
+        System.out.println("inventory hystrix.......");
         return false;
     }
     
     @Override
-    public BigDecimal findByUserId(String userId) {
-        System.out.println("执行断路器。。");
-        return BigDecimal.ZERO;
+    public Integer findByProductId(String productId) {
+        return 0;
     }
-    
+
     @Override
-    public Boolean mockWithTryException(AccountDTO accountDO) {
+    public Boolean mockWithTryException(InventoryDTO inventoryDTO) {
         return false;
     }
-    
+
     @Override
-    public Boolean mockWithTryTimeout(AccountDTO accountDO) {
-        return false;
-    }
-    
-    @Override
-    public Boolean paymentWithNested(AccountNestedDTO nestedDTO) {
-        return false;
-    }
-    
-    @Override
-    public Boolean paymentWithNestedException(AccountNestedDTO nestedDTO) {
+    public Boolean mockWithTryTimeout(InventoryDTO inventoryDTO) {
         return false;
     }
 }

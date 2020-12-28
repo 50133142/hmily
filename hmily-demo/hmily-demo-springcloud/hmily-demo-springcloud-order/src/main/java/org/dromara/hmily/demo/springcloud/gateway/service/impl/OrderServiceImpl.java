@@ -15,24 +15,28 @@
  * limitations under the License.
  */
 
-package org.dromara.hmily.demo.springcloud.order.service.impl;
+package org.dromara.hmily.demo.springcloud.gateway.service.impl;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.dromara.hmily.common.utils.IdWorkerUtils;
 import org.dromara.hmily.demo.common.order.entity.Order;
 import org.dromara.hmily.demo.common.order.enums.OrderStatusEnum;
 import org.dromara.hmily.demo.common.order.mapper.OrderMapper;
-import org.dromara.hmily.demo.springcloud.order.service.OrderService;
-import org.dromara.hmily.demo.springcloud.order.service.PaymentService;
+import org.dromara.hmily.demo.springcloud.gateway.service.OrderService;
+import org.dromara.hmily.demo.springcloud.gateway.service.PaymentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import springfox.documentation.spring.web.readers.operation.OperationDeprecatedReader;
+
 
 import java.math.BigDecimal;
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
@@ -124,6 +128,7 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
+
     private Order buildOrder(Integer count,BigDecimal amount){
         LOGGER.debug("构建订单对象");
         Order order = new Order();
@@ -135,8 +140,31 @@ public class OrderServiceImpl implements OrderService {
         order.setTotalAmount(amount);
         order.setCount(count);
         //demo中 表里面存的用户id为10000
-        order.setUserId("10000");
+        order.setUserId(IdWorkerUtils.getInstance().createUUID());
         return order;
+    }
+
+
+
+
+    public static void main(String[] args){
+
+        long uuid = IdWorkerUtils.getInstance().createUUID();
+
+    }
+
+    /**
+     * 生成8位随机数
+     * @return
+     */
+    public  static String getNonceStr(int  num) {
+        String SYMBOLS = "123456789";
+        Random RANDOM = new SecureRandom();
+        char[] nonceChars = new char[num];
+        for (int index = 0; index < nonceChars.length; ++index) {
+            nonceChars[index] = SYMBOLS.charAt(RANDOM.nextInt(SYMBOLS.length()));
+        }
+        return new String(nonceChars);
     }
 
     @Override
@@ -146,7 +174,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order queryOrderPay(Integer id){
+    public Order queryOrderPay(Long id){
         Order order = new Order();
         order.setId(id);
 
@@ -155,6 +183,41 @@ public class OrderServiceImpl implements OrderService {
         if(CollectionUtils.isNotEmpty(orders)){
             return orders.get(0);
         }
+        return order;
+    }
+
+    @Override
+    public  void batchInsertOrser() {
+        insertOrser();
+
+        ExecutorService executorService = Executors.newFixedThreadPool(8);
+        for (int i = 0; i < 200000; i++) {
+            final int no = i;
+            executorService.execute(() -> {
+                insertOrser();
+            });
+        }
+        executorService.shutdown();
+        System.out.println("Main Thread End!================================================================");
+    }
+
+
+
+    private Order insertOrser(){
+        LOGGER.debug("构建订单对象");
+        Order order = new Order();
+//        order.setId(Integer.valueOf(getNonce_str()));
+        order.setCreateTime(new Date());
+        order.setNumber(String.valueOf(IdWorkerUtils.getInstance().createUUID()));
+        //demo中的表里只有商品id为 1的数据
+        order.setProductId(String.valueOf(getNonceStr(6)));
+        order.setStatus(OrderStatusEnum.NOT_PAY.getCode());
+        order.setTotalAmount(new BigDecimal(getNonceStr(3)));
+        order.setCount(Integer.valueOf(getNonceStr(1)));
+        //demo中 表里面存的用户id为10000
+        order.setUserId(IdWorkerUtils.getInstance().createUUID());
+
+        orderMapper.save(order);
         return order;
     }
 }

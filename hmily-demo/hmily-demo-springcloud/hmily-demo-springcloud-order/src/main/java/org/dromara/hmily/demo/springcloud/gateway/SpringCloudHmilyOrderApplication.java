@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.dromara.hmily.demo.springcloud.order;
+package org.dromara.hmily.demo.springcloud.gateway;
 
 import org.apache.commons.io.IOUtils;
 import org.mybatis.spring.annotation.MapperScan;
@@ -25,7 +25,6 @@ import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfigurat
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;

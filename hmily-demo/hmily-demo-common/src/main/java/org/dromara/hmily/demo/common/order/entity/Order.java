@@ -21,6 +21,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 
 /**
@@ -33,7 +34,7 @@ public class Order implements Serializable {
 
     private static final long serialVersionUID = -8551347266419380333L;
 
-    private Integer id;
+    private Long id;
 
     /**
      * 创建时间
@@ -68,5 +69,5 @@ public class Order implements Serializable {
     /**
      * 购买人
      */
-    private String userId;
+    private Long userId;
 }

@@ -28,8 +28,8 @@ repository:
   database:
     driverClassName: com.mysql.jdbc.Driver
     url : jdbc:mysql://114.67.171.251:3306/hmily?useUnicode=true&characterEncoding=utf8
-    username: yanbing
-    password: yanbing
+    username: root
+    password: 123456
     maxActive: 20
     minIdle: 10
     connectionTimeout: 30000

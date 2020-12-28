@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.dromara.hmily.demo.springcloud.order.controller;
+package org.dromara.hmily.demo.springcloud.gateway.controller;
 
 import io.swagger.annotations.ApiOperation;
 import java.math.BigDecimal;
 
 import org.dromara.hmily.demo.common.order.entity.Order;
-import org.dromara.hmily.demo.springcloud.order.service.OrderService;
+import org.dromara.hmily.demo.springcloud.gateway.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,8 +54,27 @@ public class OrderController {
 
     @PostMapping(value = "/queryOrderPay")
     @ApiOperation(value = "写操作")
-    public Order orderPay(@RequestParam(value = "id") Integer id) {
-        return orderService.queryOrderPay(id);
+    public Order orderPay(@RequestParam(value = "id") String id) {
+        return orderService.queryOrderPay(Long.valueOf(id));
+    }
+
+
+    @PostMapping(value = "/batchInsertOrser")
+    @ApiOperation(value = "批量查询写操作")
+    public String batchInsertOrser() {
+        final long start = System.currentTimeMillis();
+//        orderService.batchInsertOrser();
+        System.out.println("批量查询写操作消耗时间为:" + (System.currentTimeMillis() - start));
+        return "SUCCESS";
+    }
+
+    @PostMapping(value = "/gateway")
+    @ApiOperation(value = "网管测试")
+    public String testGateway() {
+        final long start = System.currentTimeMillis();
+//        orderService.batchInsertOrser();
+        System.out.println("批量查询写操作消耗时间为:" + (System.currentTimeMillis() - start));
+        return "网管测试";
     }
 
     @PostMapping(value = "/orderPay")

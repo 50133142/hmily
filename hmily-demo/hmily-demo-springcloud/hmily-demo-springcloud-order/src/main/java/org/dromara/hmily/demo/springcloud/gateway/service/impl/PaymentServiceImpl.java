@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.dromara.hmily.demo.springcloud.order.service.impl;
+package org.dromara.hmily.demo.springcloud.gateway.service.impl;
 
 import org.dromara.hmily.annotation.HmilyTCC;
 import org.dromara.hmily.common.exception.HmilyRuntimeException;
@@ -25,9 +25,9 @@ import org.dromara.hmily.demo.common.inventory.dto.InventoryDTO;
 import org.dromara.hmily.demo.common.order.entity.Order;
 import org.dromara.hmily.demo.common.order.enums.OrderStatusEnum;
 import org.dromara.hmily.demo.common.order.mapper.OrderMapper;
-import org.dromara.hmily.demo.springcloud.order.client.AccountClient;
-import org.dromara.hmily.demo.springcloud.order.client.InventoryClient;
-import org.dromara.hmily.demo.springcloud.order.service.PaymentService;
+import org.dromara.hmily.demo.springcloud.gateway.client.AccountClient;
+import org.dromara.hmily.demo.springcloud.gateway.client.InventoryClient;
+import org.dromara.hmily.demo.springcloud.gateway.service.PaymentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,7 +128,7 @@ public class PaymentServiceImpl implements PaymentService {
     @HmilyTCC(confirmMethod = "confirmOrderStatus", cancelMethod = "cancelOrderStatus")
     public String makePaymentWithNested(Order order) {
         updateOrderStatus(order, OrderStatusEnum.PAYING);
-        final BigDecimal balance = accountClient.findByUserId(order.getUserId());
+        final BigDecimal balance = accountClient.findByUserId(String.valueOf(order.getUserId()));
         if (balance.compareTo(order.getTotalAmount()) <= 0) {
             throw new HmilyRuntimeException("余额不足！");
         }
@@ -140,7 +140,7 @@ public class PaymentServiceImpl implements PaymentService {
     @HmilyTCC(confirmMethod = "confirmOrderStatus", cancelMethod = "cancelOrderStatus")
     public String makePaymentWithNestedException(Order order) {
         updateOrderStatus(order, OrderStatusEnum.PAYING);
-        final BigDecimal balance = accountClient.findByUserId(order.getUserId());
+        final BigDecimal balance = accountClient.findByUserId(String.valueOf(order.getUserId()));
         if (balance.compareTo(order.getTotalAmount()) <= 0) {
             throw new HmilyRuntimeException("余额不足！");
         }
@@ -167,7 +167,7 @@ public class PaymentServiceImpl implements PaymentService {
     private AccountDTO buildAccountDTO(Order order) {
         AccountDTO accountDTO = new AccountDTO();
         accountDTO.setAmount(order.getTotalAmount());
-        accountDTO.setUserId(order.getUserId());
+        accountDTO.setUserId(String.valueOf(order.getUserId()));
         return accountDTO;
     }
     
@@ -181,7 +181,7 @@ public class PaymentServiceImpl implements PaymentService {
     private AccountNestedDTO buildAccountNestedDTO(Order order) {
         AccountNestedDTO nestedDTO = new AccountNestedDTO();
         nestedDTO.setAmount(order.getTotalAmount());
-        nestedDTO.setUserId(order.getUserId());
+        nestedDTO.setUserId(String.valueOf(order.getUserId()));
         nestedDTO.setProductId(order.getProductId());
         nestedDTO.setCount(order.getCount());
         return nestedDTO;

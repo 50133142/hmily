@@ -31,6 +31,6 @@
     
     <select id="listById" parameterType="org.dromara.hmily.demo.common.order.entity.Order"
             resultType="org.dromara.hmily.demo.common.order.entity.Order">
-       select * from  `order` where id = #{id}
+       select * from  `t_order` where id = #{id}
     </select>
 </mapper>

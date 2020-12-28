@@ -177,7 +177,7 @@
             <artifactId>sharding-jdbc-spring-namespace</artifactId>
             <version>4.0.0-RC3</version>
         </dependency>-->
-
+<!--
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
@@ -205,7 +205,7 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>27.1-jre</version>
-        </dependency>
+        </dependency>-->
 
 
     </dependencies>
@@ -225,7 +225,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>org.dromara.hmily.demo.springcloud.order.SpringCloudHmilyOrderApplication</mainClass>
+                    <mainClass>org.dromara.hmily.demo.springcloud.gateway.SpringCloudHmilyOrderApplication</mainClass>
                     <executable>true</executable>
                 </configuration>
             </plugin>

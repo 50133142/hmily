@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.dromara.hmily.demo.springcloud.order.service;
+package org.dromara.hmily.demo.springcloud.gateway.service;
 
 
 import org.dromara.hmily.demo.common.order.entity.Order;
@@ -110,5 +110,7 @@ public interface OrderService {
 
     String writeOrderPay(Integer count,BigDecimal amount);
 
-    Order queryOrderPay(Integer id);
+    Order queryOrderPay(Long id);
+
+    void batchInsertOrser();
 }
